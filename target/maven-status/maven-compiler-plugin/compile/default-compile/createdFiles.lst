@@ -1,0 +1,8 @@
+category\model\FindAllAction.class
+person\model\Person.class
+category\model\Category.class
+category\model\CategoryFilter.class
+category\model\CategoryDao.class
+person\model\Register.class
+utils\ConnectionMysql.class
+category\model\CategoryAction.class
