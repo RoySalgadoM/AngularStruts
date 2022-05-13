@@ -18,17 +18,17 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>
-        <action name="register" class="category.model.CategoryAction" method="execute">
+        <action name="register" class="controller.category.CategoryAction" method="register">
             <result name="input" type="json"/>
             <result name="success" type="json"/>
         </action>
-        <action name="findAll" class="category.model.FindAllAction" method="execute">
+        <action name="findAll" class="controller.category.CategoryAction" method="findAll">
             <result name="success" type="json"/>
         </action>
-        <action name="update" class="category.model.CategoryAction" method="update">
+        <action name="update" class="controller.category.CategoryAction" method="update">
             <result name="success" type="json"/>
         </action>
-        <action name="delete" class="category.model.CategoryAction" method="delete">
+        <action name="delete" class="controller.category.CategoryAction" method="delete">
             <result name="success" type="json"/>
         </action>
     </package>

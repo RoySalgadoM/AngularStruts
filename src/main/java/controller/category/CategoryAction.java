@@ -1,9 +1,10 @@
-package category.model;
+package controller.category;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
+import model.category.Category;
+import model.category.CategoryDao;
 
-import javax.ws.rs.core.MultivaluedMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +17,12 @@ public class CategoryAction extends ActionSupport {
     Map<String,Object> result = new HashMap<>();
     private Category category = new Category();
     CategoryDao categoryDao = new CategoryDao();
-
-
-    public String execute() throws Exception {
+    List<Category> categoryList = new ArrayList<>();
+    public String findAll() throws Exception {
+        categoryList = categoryDao.findAll();
+        return SUCCESS;
+    }
+    public String register() throws Exception {
         Gson gs = new Gson();
         category = gs.fromJson(params,Category.class);
         result.put("registered",categoryDao.register(category));
@@ -48,5 +52,11 @@ public class CategoryAction extends ActionSupport {
     public Map<String, Object> getResult() {
         return result;
     }
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
 
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
 }

@@ -1,8 +1,4 @@
-category\model\FindAllAction.class
-person\model\Person.class
-category\model\Category.class
-category\model\CategoryFilter.class
-category\model\CategoryDao.class
-person\model\Register.class
+model\category\Category.class
+controller\category\CategoryAction.class
 utils\ConnectionMysql.class
-category\model\CategoryAction.class
+model\category\CategoryDao.class

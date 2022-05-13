@@ -43,21 +43,21 @@
 
 <div class="container">
     <div class="d-md-flex justify-content-md-end mb-3">
-        <input class="form-control me-2" type="search"  placeholder="Buscar" ng-model="busqueda" aria-label="Search">
+        <input class="form-control me-2" type="search"  placeholder="Buscar" ng-model="find" aria-label="Search">
         <button class="btn btn-success" type="button" data-bs-toggle="modal"
                 data-bs-target="#register"><i
                 class="fas fa-plus"></i></button>
     </div>
     <div class="row text-center">
-        <div class="col-12" ng-if="(data.categoryList | filter : busqueda) == '' ">
+        <div class="col-12" ng-if="(data.categoryList | filter : find) == '' ">
             <span class="badge rounded-pill" style="background-color: #003049; font-size: 18px;">No hay registros</span>
         </div>
 
-        <div class="col-lg-3 col-sm-6"  ng-repeat="categorie in data.categoryList | filter : busqueda">
+        <div class="col-lg-3 col-sm-6"  ng-repeat="categorie in data.categoryList | filter : find">
             <div class="card m-1" >
                 <div class="card-body">
-                    <h5 class="card-title">{{categorie.nombre|uppercase}}</h5>
-                    <p class="card-text">{{categorie.descripcion}}</p>
+                    <h5 class="card-title">{{categorie.name|uppercase}}</h5>
+                    <p class="card-text">{{categorie.description}}</p>
                     <button type="button" ng-click="getCat(categorie.id)" data-bs-toggle="modal"
                             data-bs-target="#modify" class="btn btn-warning"><i
                             class="fas fa-edit"></i></button>
@@ -84,16 +84,16 @@
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>
 
-                                <input ng-change="validate()" type="text" ng-model="category.nombre"
-                                       name="category.nombre" class="form-control" aria-describedby="emailHelp">
-                                <span style="color: #D62828;" ng-show="errorNombre">El nombre es requerido</span>
+                                <input ng-change="validate()" type="text" ng-model="category.name"
+                                       name="category.name" class="form-control" aria-describedby="emailHelp">
+                                <span style="color: #D62828;" ng-show="errorName">El nombre es requerido</span>
 
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Descripción</label>
-                                <input ng-change="validate()" type="text" ng-model="category.descripcion"
-                                       name="category.descripcion" class="form-control" aria-describedby="emailHelp">
-                                <span style="color: #D62828;" ng-show="errorDescripcion">La descripción es
+                                <input ng-change="validate()" type="text" ng-model="category.description"
+                                       name="category.description" class="form-control" aria-describedby="emailHelp">
+                                <span style="color: #D62828;" ng-show="errorDescription">La descripción es
                                         requerida</span>
                             </div>
                         </div>
@@ -124,13 +124,13 @@
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input ng-model="category.id" name="id" type="hidden" class="form-control" aria-describedby="emailHelp">
-                                <input ng-change="validateUpdate()"  disabled ng-model="nombre" name="nombre" type="text" class="form-control" aria-describedby="emailHelp">
-                                <span style="color: #D62828;" ng-show="errorNombre">El nombre es requerido</span>
+                                <input ng-change="validateUpdate()"  disabled ng-model="name" name="name" type="text" class="form-control" aria-describedby="emailHelp">
+                                <span style="color: #D62828;" ng-show="errorName">El nombre es requerido</span>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Descripción</label>
-                                <input type="text" ng-change="validateUpdate()"  ng-model="descripcion" name="descripcion"  class="form-control" aria-describedby="emailHelp">
-                                <span style="color: #D62828;" ng-show="errorDescripcion">La descripción es
+                                <input type="text" ng-change="validateUpdate()"  ng-model="description" name="description"  class="form-control" aria-describedby="emailHelp">
+                                <span style="color: #D62828;" ng-show="errorDescription">La descripción es
                                         requerida</span>
                             </div>
                         </div>
@@ -177,25 +177,25 @@
             });
         }
         $scope.validate = () => {
-            if ($scope.category.nombre == undefined || $scope.category.nombre === "") {
-                $scope.errorNombre = true;
+            if ($scope.category.name == undefined || $scope.category.name === "") {
+                $scope.errorName = true;
                 $scope.goRegister = true;
             } else
-            if ($scope.category.descripcion == undefined || $scope.category.descripcion === "") {
-                $scope.errorDescripcion = true;
+            if ($scope.category.description == undefined || $scope.category.description === "") {
+                $scope.errorDescription = true;
                 $scope.goRegister = true;
             } else {
-                $scope.errorDescripcion = false;
-                $scope.errorNombre = false;
+                $scope.errorDescription = false;
+                $scope.errorName = false;
                 $scope.goRegister = false;
             }
         }
         $scope.validateUpdate = () => {
-            if ($scope.descripcion == undefined || $scope.descripcion === "") {
-                $scope.errorDescripcion = true;
+            if ($scope.description == undefined || $scope.description === "") {
+                $scope.errorDescription = true;
                 $scope.goModify = true;
             } else {
-                $scope.errorDescripcion = false;
+                $scope.errorDescription = false;
                 $scope.goModify = false;
             }
         }
@@ -217,8 +217,8 @@
                         data: "params=" + JSON.stringify($scope.category),
                     }).then(function successCallback(response) {
                         console.log(response.data);
-                        $scope.errorDescripcion = false;
-                        $scope.errorNombre = false;
+                        $scope.errorDescription = false;
+                        $scope.errorName = false;
                         $scope.category = {}
                         $scope.goRegister = true;
                         Swal.fire({
@@ -247,8 +247,8 @@
                 if (result.isConfirmed) {
                     let categoryModify = new Object();
                     categoryModify.id = $scope.id
-                    categoryModify.nombre = $scope.nombre
-                    categoryModify.descripcion = $scope.descripcion
+                    categoryModify.name = $scope.name
+                    categoryModify.description = $scope.description
                     $http({
                         method: 'POST',
                         headers: {
@@ -257,9 +257,8 @@
                         url: 'http://localhost:8080/basic_struts/update',
                         data: "params=" + JSON.stringify(categoryModify),
                     }).then(function successCallback(response) {
-                        console.log(response.data);
-                        $scope.errorDescripcion = false;
-                        $scope.errorNombre = false;
+                        $scope.errorDescription = false;
+                        $scope.errorName = false;
                         $scope.category = {}
                         $scope.goRegister = true;
                         Swal.fire({
@@ -297,8 +296,8 @@
                         data: "params=" + JSON.stringify(categoryDelete),
                     }).then(function successCallback(response) {
                         console.log(response.data);
-                        $scope.errorDescripcion = false;
-                        $scope.errorNombre = false;
+                        $scope.errorDescription = false;
+                        $scope.errorName = false;
                         $scope.category = {}
                         $scope.goRegister = true;
                         Swal.fire({
@@ -321,8 +320,8 @@
 
                 if ($scope.data.categoryList[i].id == id) {
                     $scope.id = $scope.data.categoryList[i].id
-                    $scope.nombre = $scope.data.categoryList[i].nombre
-                    $scope.descripcion = $scope.data.categoryList[i].descripcion
+                    $scope.name = $scope.data.categoryList[i].name
+                    $scope.description = $scope.data.categoryList[i].description
                 }
             }
 

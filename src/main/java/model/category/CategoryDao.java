@@ -1,5 +1,5 @@
-package category.model;
-import com.opensymphony.xwork2.ActionContext;
+package model.category;
+import model.category.Category;
 import utils.ConnectionMysql;
 
 import java.sql.*;
@@ -16,10 +16,10 @@ public class CategoryDao {
         boolean state = false;
         try{
             con = ConnectionMysql.getConnection();
-            String query = "insert into category(nombre, descripcion) values(?,?);";
+            String query = "insert into category(name, description) values(?,?);";
             pstm = con.prepareStatement(query);
-            pstm.setString(1, category.getNombre());
-            pstm.setString(2, category.getDescripcion());
+            pstm.setString(1, category.getName());
+            pstm.setString(2, category.getDescription());
             state = pstm.executeUpdate() == 1;
         }catch (SQLException ex) {
             ex.printStackTrace();
@@ -34,9 +34,9 @@ public class CategoryDao {
         boolean state = false;
         try {
             con = ConnectionMysql.getConnection();
-            String query = "UPDATE CATEGORY SET CATEGORY.descripcion = ? WHERE CATEGORY.Id = ?;";
+            String query = "UPDATE CATEGORY SET CATEGORY.description = ? WHERE CATEGORY.Id = ?;";
             pstm = con.prepareStatement(query);
-            pstm.setString(1, category.getDescripcion());
+            pstm.setString(1, category.getDescription());
             pstm.setInt(2, category.getId());
             state = pstm.executeUpdate() == 1;
         }catch (SQLException ex){
@@ -66,14 +66,14 @@ public class CategoryDao {
         List<Category> categoryList = new ArrayList<>();
         try{
             con = ConnectionMysql.getConnection();
-            String query = "select category.id, category.nombre, category.descripcion from category;";
+            String query = "select category.id, category.name, category.description from category;";
             statement = con.createStatement();
             rs = statement.executeQuery(query);
             while(rs.next()){
                 Category category = new Category();
                 category.setId(rs.getInt("id"));
-                category.setNombre(rs.getString("nombre"));
-                category.setDescripcion(rs.getString("descripcion"));
+                category.setName(rs.getString("name"));
+                category.setDescription(rs.getString("description"));
                 categoryList.add(category);
 
             }
