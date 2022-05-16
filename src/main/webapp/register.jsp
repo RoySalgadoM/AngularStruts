@@ -13,11 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+ 
 </head>
 
-<body ng-controller="myController" style="background-color: #fc4b08; color: #003049;">
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #003049;">
+<body ng-controller="myController" style="background-color: #FFDAB9; color: #003049;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #003049; font-family: Tahoma">
     <div class="container-fluid">
         <a class="navbar-brand">Tienda</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -38,7 +38,7 @@
         </div>
     </div>
 </nav>
-<h1 class="mt-3 text-center" style="color: white;">Categorías</h1>
+<h1 class="mt-3 text-center" style="color: #003049;">Categorías</h1>
 <hr style="background-color: white;">
 
 <div class="container">
@@ -59,9 +59,9 @@
                     <h5 class="card-title">{{categorie.name|uppercase}}</h5>
                     <p class="card-text">{{categorie.description}}</p>
                     <button type="button" ng-click="getCat(categorie.id)" data-bs-toggle="modal"
-                            data-bs-target="#modify" class="btn btn-warning"><i
+                            data-bs-target="#modify" class="btn " style="background-color: #F7D358;"><i
                             class="fas fa-edit"></i></button>
-                    <button class="btn"  ng-click="delete(categorie.id)" style="background-color: #D62828; color: white;"><i
+                    <button class="btn"  ng-click="delete(categorie.id)" style="background-color: #FA5858; color: white;"><i
                             class="fas fa-trash"></i></button>
                 </div>
             </div>

@@ -1,4 +1,7 @@
+model\product\ProductDao.class
 model\category\Category.class
-controller\category\CategoryAction.class
-utils\ConnectionMysql.class
 model\category\CategoryDao.class
+controller\product\ProductAction.class
+controller\category\CategoryAction.class
+model\product\Product.class
+utils\ConnectionMysql.class

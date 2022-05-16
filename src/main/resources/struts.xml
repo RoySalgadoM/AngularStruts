@@ -18,6 +18,7 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>
+
         <action name="register" class="controller.category.CategoryAction" method="register">
             <result name="input" type="json"/>
             <result name="success" type="json"/>
@@ -29,6 +30,20 @@
             <result name="success" type="json"/>
         </action>
         <action name="delete" class="controller.category.CategoryAction" method="delete">
+            <result name="success" type="json"/>
+        </action>
+
+        <action name="registerProduct" class="controller.product.ProductAction" method="register">
+            <result name="input" type="json"/>
+            <result name="success" type="json"/>
+        </action>
+        <action name="findAllProduct" class="controller.product.ProductAction" method="findAll">
+            <result name="success" type="json"/>
+        </action>
+        <action name="updateProduct" class="controller.product.ProductAction" method="update">
+            <result name="success" type="json"/>
+        </action>
+        <action name="deleteProduct" class="controller.product.ProductAction" method="delete">
             <result name="success" type="json"/>
         </action>
     </package>
